@@ -18,7 +18,7 @@ API to capture time series data from client application to genarate relevant met
 
 ### API endpoints
 **Request**
-- Path: `/{STAGE}/getMerics`  
+- Path: `/{STAGE}/metrics`  
 - Method: `POST`  
 - Required parameters:  
   - Need to add the required header values in request header
