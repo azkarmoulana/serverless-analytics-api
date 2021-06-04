@@ -1,0 +1,46 @@
+service:
+  name: analytics-api
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dynamodb-local
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  stage: ${opt:stage, 'dev'}
+  region: eu-central-1
+  environment:
+    METRICS_TABLE_NAME: ${self:custom.MetricsTable.name}
+  iam:
+    role:
+      statements:
+        - ${file(iam/MetricsTableIAM.yml):MetricsTableIAM}
+
+resources:
+  Resources:
+    MetricsTable: ${file(resources/MetricsTable.yml):MetricsTable}
+
+functions:
+  getMetcics:
+    handler: src/functions/getMetrics.handler
+    events:
+      - http:
+          path: metrics
+          method: post
+
+custom:
+  MetricsTable:
+    name: !Ref MetricsTable
+    arn: !GetAtt MetricsTable.Arn
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+    migration:
+      dir: offline/migrations
