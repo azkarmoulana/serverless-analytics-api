@@ -1,0 +1,41 @@
+{
+  "name": "serverless-analytics-api",
+  "version": "1.0.0",
+  "description": "Real-time serverless analytics API",
+  "author": "Azkar Moulana",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "sls offline start",
+    "deploy:dev": "sls deploy -v",
+    "test": "jest --silent",
+    "test:watch": "jest --watchAll"
+  },
+  "jest": {
+    "globalSetup": "./node_modules/@shelf/jest-dynamodb/setup.js",
+    "globalTeardown": "./node_modules/@shelf/jest-dynamodb/teardown.js"
+  },
+  "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.8.1",
+    "@types/aws-lambda": "^8.10.76",
+    "@types/http-errors": "^1.8.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.33",
+    "@types/serverless": "^1.78.28",
+    "@types/uuid": "^8.3.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "serverless": "^2.43.1",
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^7.0.0",
+    "serverless-plugin-typescript": "^1.1.9",
+    "ts-jest": "^26.5.3",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.6",
+    "aws-sdk": "^2.919.0",
+    "uuid": "^8.3.2"
+  }
+}
