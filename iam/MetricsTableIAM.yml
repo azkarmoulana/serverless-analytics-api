@@ -1,0 +1,6 @@
+MetricsTableIAM:
+  Effect: Allow
+  Action:
+    - dynamodb:BatchWriteItem
+  Resource:
+    - ${self:custom.MetricsTable.arn}
